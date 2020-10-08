@@ -3,25 +3,27 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
-    @user = User.find_by_id(params[:id])
-    @books = Book.all
-    @book = Book.new
-    @user = User.find(params[:id])
-    @user = User.find_by_id(current_user.id)
-    
-    # @user = User.find(params[:id])
-    # @books = @user.book
+    # @user = User.find_by_id(params[:id])
+    # @books = Book.all
     # @book = Book.new
+    # @user = User.find(params[:id])
+    # @user = User.find_by_id(current_user.id)
+
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
+
   end
 
   def index
+    # @user = User.find(params[:id])
     @users = User.all
     @book = Book.new
   end
 
   def edit
     @user = User.find(params[:id])
-    
+
     if @user.save
       flash[:notice] = "successfully"
     else
@@ -29,8 +31,8 @@ class UsersController < ApplicationController
       render "edit"
       @user = current_user
     end
-    
-    
+
+
   end
 
   def update
@@ -40,6 +42,23 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+
+
+
+  def following
+      @user  = User.find(params[:id])
+      @users = @user.follower
+      render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followed
+    render 'show_follower'
+  end
+
+
+
 
   private
 

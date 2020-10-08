@@ -1,35 +1,73 @@
 <div class="row">
  <div class="col-xs-3">
 <h2>User info</h2>
-<%= render 'users/profile', user: current_user %>
+
+<!--%= render 'users/profile', user: current_user %>-->
+<%= render 'info', user: current_user %>
 
 <h2>New book</h2>
 <%= render 'books/form', book: @book %>
 </div>
 
+
+
 <div class="col-xs-9">
 <h2>Users</h2>
-<!--users一覧 -->
-<table class="table table-hover table-inverse">
-	<thead>
-		<tr>
-			<th></th>
-			<th>image</th>
-			<th>name</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
 
-	<tbody>
-		<% @users.each do |user| %>
-		<tr>
-			<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
-			<td><%= user.name %></td>
-			<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-<!--users一覧 -->
+<!--修正前 -->
+<!--table class="table table-hover table-inverse">-->
+<!--	thead>-->
+<!--		tr>-->
+<!--			th></th>-->
+<!--			th>image</th>-->
+<!--			th>name</th>-->
+<!--			th colspan="3"></th>-->
+<!--		/tr>-->
+<!--	/thead>-->
+
+<!--追記-->
+    <%= render 'index', {users: @users, user: @user}  %>
+    
+    
+    
+    
+    
+  </div>
+
 </div>
-</div>
+
+
+<!--フォローフォロワー機能-->
+
+<!--% if user_signed_in? %>-->
+<!--  h1>ユーザー一覧画面</h1>-->
+<!--  % @users.each do |user| %>-->
+<!--    p>-->
+<!--      %= "id: #{user.id} email: #{user.email}" %>-->
+<!--      % if current_user.following?(user) %>-->
+<!--        %= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>-->
+<!--      % else %>-->
+<!--        %= link_to 'フォローする', follow_path(user.id), method: :POST %>-->
+<!--      % end %>-->
+<!--    /p>-->
+<!--  % end %>-->
+<!--% end %>-->
+
+<!--フォローフォロワー機能-->
+
+
+
+
+<!--削除-->
+<!--	tbody>-->
+<!--		% @users.each do |user| %>-->
+<!--		tr>-->
+<!--			td>%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>-->
+<!--			td>%= user.name %></td>-->
+<!--			td>%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>-->
+<!--		/tr>-->
+<!--		% end %>-->
+<!--	/tbody>-->
+<!--/table>-->
+<!--/div>-->
+<!--/div>-->
