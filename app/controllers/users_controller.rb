@@ -57,8 +57,20 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
-
-
+  # def search
+  #   if params[:name].present?
+  #     @users = User.where('name LIKE ?', "%#{params[:name]}%")
+      
+  #     @books = Book.where('title LIKE ?', "%#{params[:title]}%")
+      
+  #   else
+  #     flash[:notice] = "検索結果は0件でした"
+  #     @users = User.none
+      
+  #     @books = Book.none
+  #   end
+  # end
+  
 
   private
 
@@ -72,5 +84,10 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+  
+  
+
+  
+
 
 end

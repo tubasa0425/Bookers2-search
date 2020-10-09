@@ -68,6 +68,25 @@ class User < ApplicationRecord
 
 
 
+# 検索機能
+  def self.search(search,word)
+  if search == "forward_match"
+  @user = User.where("name LIKE?","#{word}%")
+  elsif search == "backward_match"
+  @user = User.where("name LIKE?","%#{word}")
+  elsif search == "perfect_match"
+  @user = User.where("#{word}")
+  elsif search == "partial_match"
+  @user = User.where("name LIKE?","%#{word}%")
+  else
+　@user = User.all
+  end
+  end
+# 検索機能
+
+
+
+
   attachment :profile_image, destroy: false
 
   validates :name, presence: true, length: {maximum: 20, minimum: 2}, uniqueness: true

@@ -65,6 +65,27 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
+  
+  # 検索機能
+  
+  # def search
+  #   if params[:title].present?
+  #     # @users = User.where('name LIKE ?', "%#{params[:name]}%")
+      
+  #     @books = Book.where('title LIKE ?', "%#{params[:title]}%")
+      
+  #   else
+  #     flash[:notice] = "検索結果は0件でした"
+  #     # @users = User.none
+      
+  #     @books = Book.none
+  #   end
+  # end
+  
+  
+  
+  
+  
 
   private
 
@@ -80,5 +101,9 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+  
 
+  
+  
+  
 end
